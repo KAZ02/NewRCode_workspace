@@ -115,7 +115,14 @@
     </div>
     <div class="sidenav" id="contents3">
         <h2>画像アップロード</h2>
-        <input type="file" id="imageFileInput">
+        <!-- <input type="file" id="imageFileInput"> -->
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag and drop a file or click</p>
+                    <input type="file" name="upload_file" id="input-files">
+                </div>
+            </form>
     </div>
     <div class="sidenav" id="contents4">
         <h2>塗りつぶし</h2>
@@ -129,7 +136,6 @@
     </div>
 
     <script src="script.js"></script>
-
 </body>
 
 </html>

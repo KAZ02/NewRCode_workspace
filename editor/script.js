@@ -16,7 +16,7 @@ var nav5 = document.querySelector("#contents5");
 var btn5 = document.querySelector("#btn5");
 var main = document.querySelector(".canvas-container");
 
-const fileInput = document.querySelector("#imageFileInput");
+const fileInput = document.querySelector("input-files");
 const canvasCtx = canvas.getContext("2d");
 const settings = {};
 let image = null;
@@ -208,7 +208,7 @@ function renderImage() {
   canvasCtx.drawImage(image, 0, 0);
 }
 
-document.getElementById("imageFileInput").onchange = function(e) {
+document.getElementById("input-files").onchange = function(e) {
   var reader = new FileReader();
   reader.onload = function(e) {
     var image = new Image();
@@ -241,17 +241,21 @@ document.addEventListener('keydown', function (e) {
  }
 
 // Delete キーが押されたときのイベントを処理
-  // デリートキーが押されたとき
-  if (e.key === 'Delete') {
-      // 選択されているオブジェクトを取得
-      var activeObject = canvas.getActiveObject();
-      // 選択されているオブジェクトが存在する場合
-      if (activeObject) {
-          // オブジェクトを削除
-          canvas.remove(activeObject);
-          canvas.renderAll();
-      }
+if (e.key === 'Delete') {
+  // 選択されているオブジェクトを取得
+  var activeObjects = canvas.getActiveObjects();
+  
+  // 選択されているオブジェクトが存在する場合
+  if (activeObjects.length > 0) {
+    // オブジェクトを削除
+    canvas.remove(...activeObjects);
+
+    // 描画を更新
+    canvas.discardActiveObject().renderAll();
   }
+}
 });
+
+
 
 resetSettings();

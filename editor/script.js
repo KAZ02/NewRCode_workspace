@@ -226,4 +226,32 @@ document.getElementById("imageFileInput").onchange = function(e) {
   reader.readAsDataURL(e.target.files[0]);
 }
 
+
+document.addEventListener('keydown', function (e) {
+  //Backspaceキーが押されたときのイベントを処理
+  //Backspaceが押されたとき
+  if (e.key === 'Backspace') {
+      // 選択されているオブジェクトを取得
+      var activeObject = canvas.getActiveObject();
+      if (activeObject.type === 'i-text') {
+        // テキストボックスの場合、テキストを空にする
+        activeObject.text = '';
+        canvas.renderAll();
+    } elseif (activeObject) 
+ }
+
+// Delete キーが押されたときのイベントを処理
+  // デリートキーが押されたとき
+  if (e.key === 'Delete') {
+      // 選択されているオブジェクトを取得
+      var activeObject = canvas.getActiveObject();
+      // 選択されているオブジェクトが存在する場合
+      if (activeObject) {
+          // オブジェクトを削除
+          canvas.remove(activeObject);
+          canvas.renderAll();
+      }
+  }
+});
+
 resetSettings();
